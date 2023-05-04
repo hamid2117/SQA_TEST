@@ -31,10 +31,14 @@ describe('Resizable Box', () => {
     // Verify the initial size of the resizable box element
     cy.get('#resizableBoxWithRestriction')
       .should('have.css', 'height')
-      .and('be.closeTo', 200, 0.01)
+      .then((height) => {
+        expect(parseFloat(height)).to.be.closeTo(200, 0.01)
+      })
     cy.get('#resizableBoxWithRestriction')
       .should('have.css', 'width')
-      .and('be.closeTo', 200, 0.01)
+      .then((width) => {
+        expect(parseFloat(width)).to.be.closeTo(200, 0.01)
+      })
 
     // Trigger a resize event on the resizable box element
     cy.get('#resizableBoxWithRestriction .react-resizable-handle-se')
@@ -45,23 +49,32 @@ describe('Resizable Box', () => {
     // Verify the size of the resizable box element after resizing
     cy.get('#resizableBoxWithRestriction')
       .should('have.css', 'height')
-      .and('be.closeTo', 150, 0.01)
+      .then((height) => {
+        expect(parseFloat(height)).to.be.closeTo(150, 0.01)
+      })
     cy.get('#resizableBoxWithRestriction')
       .should('have.css', 'width')
-      .and('be.closeTo', 150, 0.01)
+      .then((width) => {
+        expect(parseFloat(width)).to.be.closeTo(150, 0.01)
+      })
     cy.log('Min width and height is 150')
 
     // Verify the size of the parent div element of the resizable box element
     cy.get('#resizableBoxWithRestriction')
       .parent('div')
       .should('have.css', 'height')
-      .and('be.closeTo', 300, 0.01)
+      .then((height) => {
+        expect(parseFloat(height)).to.be.closeTo(300, 0.01)
+      })
     cy.get('#resizableBoxWithRestriction')
       .parent('div')
       .should('have.css', 'width')
-      .and('be.closeTo', 500, 0.01)
+      .then((height) => {
+        expect(parseFloat(height)).to.be.closeTo(500, 0.01)
+      })
 
     // Verify that the resizable box element has relative positioning
     cy.get('#resizable').invoke('css', 'position').should('equal', 'relative')
+    cy.log('2nd box is resizable')
   })
 })

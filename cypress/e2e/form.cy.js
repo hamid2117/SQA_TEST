@@ -37,7 +37,9 @@ describe('Form Data', () => {
     cy.get("[tabindex='-1']").contains('div', 'NCR').click()
     cy.get('#city').click()
     cy.get("[tabindex='-1']").contains('div', 'Delhi').click()
-    cy.get('[type="submit"]').click()
+    cy.get('#submit').click()
+
+    cy.log('All giving data is submited')
 
     // Verifying Modal is visible
     cy.get('.modal-title').should('be.visible')
@@ -52,5 +54,11 @@ describe('Form Data', () => {
         .contains(value)
         .should('be.visible')
     })
+    cy.log('Verified all user data')
+
+    // Close Modal
+    cy.get('#closeLargeModal').click()
+
+    cy.log('Model is closed')
   })
 })

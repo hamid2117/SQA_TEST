@@ -1,11 +1,11 @@
 /// <reference types="cypress" />
 
-describe('Form Data', () => {
+describe('Book Store API', () => {
   beforeEach(() => {
     cy.visit('/')
   })
 
-  it('should submit the form and verify the user data', () => {
+  it('Should match the following result', () => {
     cy.intercept('/BookStore/v1/Book?ISBN=9781593277574', (req) => {
       req.reply({
         statusCode: 200,
